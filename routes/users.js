@@ -30,15 +30,13 @@ router.get('/', function(req, res, next) {
   // // 生成totp
   var key = '01536ebb-5870-4fe2-80ff-b818c435e795';
   var encoded = base32.encode(key);
-  console.log(encoded.toString())
   var encodedForGoogle = encoded.toString().replace(/=/g,'');
   var uri = 'otpauth://totp/taosiqi1?secret=' + encodedForGoogle;
   console.log('uri',uri)
 
   // 解密totp
-  console.log(base32.decode(encodedForGoogle).toString())
   var key = base32.decode(encodedForGoogle).toString(); //用户生成的密钥，需要计入数据库
-  var token = '833942'; //app上面的app上面的
+  var token = '738468'; //app上面的app上面的
   var login = notp.totp.verify(token, key); //{time:60} 改为60s一次
   console.log('login',login);
   console.log('key',notp.totp.gen(key))
